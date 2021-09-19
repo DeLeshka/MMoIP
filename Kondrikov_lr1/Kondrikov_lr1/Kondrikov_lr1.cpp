@@ -104,7 +104,7 @@ int main()
                 outFile << std::endl;
         }
 
-        std::cout << "\nEncryption was succesfull.";
+        std::cout << "\nEncryption was succesfull.\n";
         inFile.close();
         outFile.close();
     }
