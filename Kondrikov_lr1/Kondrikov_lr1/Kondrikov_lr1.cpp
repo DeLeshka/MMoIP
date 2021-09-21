@@ -3,7 +3,6 @@
 #include <string>
 #include <cassert>
 
-unsigned char (*codePtr)(int letter, int codeLetter);
 
 inline std::string getString(std::string message)
 {
@@ -11,9 +10,9 @@ inline std::string getString(std::string message)
     std::string key;
     //std::cin.clear();
     //std::cin.ignore(32767, '\n');
-    std::cin >> key;
-    if (key == "") 
-        key = getString(message);
+    std::getline(std::cin, key);
+   /* if (key == "") 
+        key = getString(message);*/
     return key;
 }
 
@@ -59,6 +58,9 @@ int main()
     {
         std::cout << "1. Encrypt a file.\n" << "2. Decrypt a file\n" << "0. Exit\n";
 
+        //указатель на функцию (де)кодирования
+        unsigned char (*codePtr)(int letter, int codeLetter) = encode;
+
         switch (getAnswer())
         {
         case 1:
@@ -76,7 +78,6 @@ int main()
         }
 
         std::string key{ getString("key") };
-
         std::string inFName{ getString("an input file name (without \".txt\")") + ".txt" };
         std::ifstream inFile(inFName);
         assert(inFile && "Output file couldn't be opened");
@@ -94,7 +95,7 @@ int main()
             {
 
                 //for checking in console
-                //std::cout << letter << ' ' << (char)letter << ' ' << (int)encode(letter, static_cast<int>(key[i])) << ' ' << encode(letter, static_cast<int>(key[i])) << std::endl; 
+                //std::cout << letter << ' ' << (char)letter << ' ' << (int)(*codePtr)(letter, static_cast<int>(key[i])) << ' ' << (*codePtr)(letter, static_cast<int>(key[i])) << std::endl; 
 
                 outFile << (*codePtr)(letter, static_cast<int>(key[i]));
                 i++;
