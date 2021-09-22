@@ -8,11 +8,9 @@ inline std::string getString(std::string message)
 {
     std::cout << "Please, enter " << message << ": ";
     std::string key;
-    //std::cin.clear();
-    //std::cin.ignore(32767, '\n');
     std::getline(std::cin, key);
-   /* if (key == "") 
-        key = getString(message);*/
+    if (key == "") 
+        key = getString(message);
     return key;
 }
 
@@ -48,12 +46,15 @@ int getAnswer()
         std::cin.ignore(32767, '\n');
         std::cout << "Please, input a valid answer: ";
     }
+    std::cin.clear();
+    std::cin.ignore(32767, '\n');
     return answer;
 }
 
 int main()
 {
     setlocale(LC_ALL, "Russian");
+    std::string key{ getString("key") };
     while (true)
     {
         std::cout << "1. Encrypt a file.\n" << "2. Decrypt a file\n" << "0. Exit\n";
@@ -77,7 +78,7 @@ int main()
             return 0;
         }
 
-        std::string key{ getString("key") };
+        
         std::string inFName{ getString("an input file name (without \".txt\")") + ".txt" };
         std::ifstream inFile(inFName);
         assert(inFile && "Output file couldn't be opened");
