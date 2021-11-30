@@ -94,10 +94,10 @@ int main()
         while ((letter = inFile.get()) != EOF) {
             if (letter != '\n')
             {
-
+                
                 //for checking in console
                 //std::cout << letter << ' ' << (char)letter << ' ' << (int)(*codePtr)(letter, static_cast<int>(key[i])) << ' ' << (*codePtr)(letter, static_cast<int>(key[i])) << std::endl; 
-
+                std::cout << sizeof(letter) << std::endl;
                 outFile << (*codePtr)(letter, static_cast<int>(key[i]));
                 i++;
                 if (i == key_length) i = 0;
@@ -106,7 +106,9 @@ int main()
                 outFile << std::endl;
         }
 
-        std::cout << "\nEncryption was succesfull.\n";
+        std::cout << "\nEncryption was succesfull.\n\n";
+        char ch = 'n';
+        std::cout << sizeof(ch) << " bytes\n";
         inFile.close();
         outFile.close();
     }
